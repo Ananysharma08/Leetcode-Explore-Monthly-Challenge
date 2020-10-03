@@ -1,0 +1,27 @@
+class Solution {
+public:
+     void myfunc(int i, vector<int>& candidates, int target , vector<vector<int>>&mat, vector<int>v){
+         if(target<0 )
+             return;
+         if(i==candidates.size()){
+             return;
+         }
+         if(target==0){
+             mat.push_back(v);
+             return;
+         }
+         v.push_back(candidates[i]);
+         myfunc(i,candidates,target-candidates[i],mat,v);
+         v.pop_back();
+         myfunc(i+1,candidates,target,mat,v);
+     }
+    
+    
+    
+    vector<vector<int>> combinationSum(vector<int>& candidates, int target) {
+        vector<vector<int>>mat;
+        vector<int>v;
+        myfunc(0,candidates,target,mat,v);
+            return mat; 
+    }
+};
